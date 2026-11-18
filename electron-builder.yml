@@ -1,0 +1,50 @@
+appId: com.workbuddy.prompter
+productName: 提词器
+copyright: Copyright © 2026 WorkBuddy
+
+directories:
+  output: release
+  buildResources: build
+
+# 只打包运行所需的文件
+files:
+  - electron/**/*
+  - dist/**/*
+  - package.json
+  - '!**/*.map'
+  - '!**/node_modules/**/{test,__tests__,tests,powered-test,example,examples}/**'
+
+asar: true
+compression: normal
+removePackageScripts: true
+electronLanguages:
+  - zh-CN
+  - en-US
+
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  artifactName: Prompter-${version}-${arch}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 提词器
+  deleteAppDataOnUninstall: false
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+  artifactName: Prompter-${version}-Setup.${ext}
+
+portable:
+  artifactName: Prompter-${version}-Portable.${ext}

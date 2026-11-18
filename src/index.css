@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI Variable Display',
+    'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI', system-ui, sans-serif;
+
+  /* 苹果风强调色（iOS/macOS systemBlue） */
+  --color-accent: #0a84ff;
+  --color-accent-hover: #409cff;
+  --color-accent-press: #0071e3;
+
+  --color-mist: #f5f5f7;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: transparent;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    user-select: none;
+    cursor: default;
+  }
+
+  ::selection {
+    background: rgba(10, 132, 255, 0.35);
+  }
+
+  input,
+  textarea {
+    user-select: text;
+  }
+}
+
+@layer components {
+  /* Electron 无边框窗口的拖拽区 / 按钮不可拖拽区 */
+  .drag-region {
+    -webkit-app-region: drag;
+  }
+
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+
+  /* 隐藏滚动条（提词区仍可滚轮滚动） */
+  .scroll-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-hidden::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* 速度滑块 */
+  .speed-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 116px;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.6),
+      0 0 0 0 rgba(255, 255, 255, 0.16);
+    transition:
+      box-shadow 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .speed-slider:hover::-webkit-slider-thumb {
+    box-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.6),
+      0 0 0 5px rgba(255, 255, 255, 0.12);
+  }
+
+  .speed-slider:active::-webkit-slider-thumb {
+    transform: scale(1.08);
+  }
+}
